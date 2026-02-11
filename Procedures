@@ -1,5 +1,5 @@
 --2. Crie uma Procedure que lista os top N clientes de acordo com a data de primeira compra. O 
---valor de N deve ser um par‚metro de entrada da sua Procedure.
+--valor de N deve ser um par√¢metro de entrada da sua Procedure.
 
 SELECT * FROM DimCustomer
 

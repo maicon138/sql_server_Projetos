@@ -1,0 +1,70 @@
+DROP DATABASE Alugafacil 
+CREATE DATABASE AlugaFacil 
+USE AlugaFacil
+
+CREATE TABLE Carro( 
+id_carro INT, 
+placa VARCHAR(100) NOT NULL, 
+modelo VARCHAR(100) NOT NULL, 
+tipo VARCHAR(100) NOT NULL, 
+valor FLOAT NOT NULL, 
+CONSTRAINT carro_id_carro_pk PRIMARY KEY(id_carro) 
+) 
+INSERT INTO Carro(id_carro, placa, modelo, tipo, valor) VALUES 
+(1, 'CRU-1111', 'Chevrolet Cruze', 'Sedan', 140000), 
+(2, 'ARG-2222', 'Fiat Argo', 'Hatch', 80000), 
+(3, 'COR-3333', 'Toyota Corolla', 'Sedan', 170000), 
+(4, 'TIG-4444', 'Caoa Chery Tiggo', 'SUV', 190000) 
+
+SELECT * FROM Carro
+
+---4. Crie uma Procedure que insere uma nova linha na tabela Carro. Essa nova linha deve conter 
+--os seguintes dados: -- id = 5 -- placa = GOL-5555 -- modelo = Volkswagen Gol -- tipo = Hatch -- valor = 80000
+
+
+CREATE OR ALTER PROCEDURE cadastra_carro
+AS
+BEGIN
+	BEGIN TRANSACTION
+	INSERT INTO Carro(id_carro, placa, modelo,tipo, valor)
+		values
+		(5, 'GOL-5555', 'Volkswagen Gol', 'Hacht', 80000)
+	COMMIT
+
+END
+
+execute cadastra_carro
+
+
+
+---5. Crie uma Procedure que altera o valor de venda de um carro. A Procedure deve receber 
+--como parâmetros o id_carro e o novo valo
+
+CREATE OR ALTER PROCEDURE ALTERA_VALOR (@id INT , @novo_valor FLOAT)
+
+AS
+	BEGIN
+		BEGIN TRANSACTION
+			UPDATE carro
+			set valor = @novo_valor
+			WHERE id_carro = @id
+		COMMIT
+	END
+
+	EXECUTE ALTERA_VALOR 1, 300000
+
+	select * from Carro
+
+
+---6. Crie uma Precedure que exclui um carro a partir do id informado.
+
+CREATE OR ALTER PROCEDURE exclui_carro(@id INT)
+AS
+	BEGIN
+		BEGIN TRANSACTION
+			DELETE FROM Carro
+			WHERE id_carro = @id
+	COMMIT
+END
+
+EXECUTE exclui_carro 1

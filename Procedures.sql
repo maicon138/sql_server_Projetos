@@ -1,0 +1,21 @@
+--2. Crie uma Procedure que lista os top N clientes de acordo com a data de primeira compra. O 
+--valor de N deve ser um parâmetro de entrada da sua Procedure.
+
+SELECT * FROM DimCustomer
+
+CREATE OR ALTER PROCEDURE lista_top_clientes (@topN int)
+
+AS
+BEGIN
+	SELECT TOP(@topN)
+	REPLACE(CONCAT(FirstName, ' ', LastName),' ', ' - ')
+	EmailAddress,
+	DateFirstPurchase
+FROM DimCustomer
+WHERE CustomerType = 'Person'
+
+
+
+END
+
+EXECUTE lista_top_clientes 100

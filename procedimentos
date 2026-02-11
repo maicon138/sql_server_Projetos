@@ -38,7 +38,7 @@ execute cadastra_carro
 
 
 ---5. Crie uma Procedure que altera o valor de venda de um carro. A Procedure deve receber 
---como par‚metros o id_carro e o novo valo
+--como par√¢metros o id_carro e o novo valo
 
 CREATE OR ALTER PROCEDURE ALTERA_VALOR (@id INT , @novo_valor FLOAT)
 
